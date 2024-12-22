@@ -7,7 +7,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<BasvuruEkle />} />
+        <Route path="/basvuru-ekle-vatandas" element={<BasvuruEkle />} />
         <Route path="/basarili" element={<BasvuruAlindi />} />
 
       </Routes>

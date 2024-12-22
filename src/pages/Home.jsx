@@ -8,7 +8,7 @@ export const Home = () => {
 
     useEffect(() => {
         const redirect = setTimeout(() => {
-            navigate("/Basvuru-ekle");
+            navigate("/basvuru-ekle-vatandas");
         }, 1000); // 1 saniye bekleyip yönlendirme yapıyoruz
 
         return () => clearTimeout(redirect);

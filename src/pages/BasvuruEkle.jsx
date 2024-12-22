@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import useRequestStore from "../stores/requestStore";
 import { useNavigate } from "react-router-dom";
 
@@ -21,8 +21,6 @@ const BasvuruEkle = () => {
         tckn: "",
         requestNumber: "",
         applicantType: "",
-        receivedBy: "",
-        assignedLawyer: "",
         complaintReason: "",
         Incidents: {
             category: "MediaScan", // Varsayılan kategori
@@ -125,7 +123,7 @@ const BasvuruEkle = () => {
         if (validateStep()) {
             console.log("Gönderilen veriler:", formData);
             try {
-                const submissionData = {
+                const createRequestData = {
                     name: formData.name,
                     surname: formData.surname,
                     email: formData.email,
@@ -133,8 +131,6 @@ const BasvuruEkle = () => {
                     telephone: formData.telephone,
                     requestNumber: formData.requestNumber,
                     applicantType: formData.applicantType,
-                    receivedBy: formData.receivedBy,
-                    assignedLawyer: formData.assignedLawyer,
                     complaintReason: formData.complaintReason,
                     Incidents: formData.Incidents, // Eğer `_id` varsa sadece onu gönder
                     submissions: formData.submissions.map((submission) => ({
@@ -142,9 +138,7 @@ const BasvuruEkle = () => {
                         document: submission.document || "",
                     })),
                 };
-                console.log("Gönderilen Incidents verisi:", formData.Incidents);
-                console.log("Gönderilen veri:", submissionData); // Gönderilen veriyi kontrol edin
-                await createRequest(submissionData); // Backend'e gönderim
+                await createRequest(createRequestData); // Backend'e gönderim
                 toast.success("Başvuru başarıyla oluşturuldu!", { // Toastify ile başarı mesajı
                     position: "top-right",
                     autoClose: 3000,
