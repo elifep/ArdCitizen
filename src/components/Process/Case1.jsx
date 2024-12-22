@@ -139,7 +139,6 @@ const Case1 = ({ formData, setFormData, handleInputChange, errors }) => {
                         placeholder="Bu alan otomatik olarak doldurulacaktır."
                         value={formData.requestNumber}
                         onChange={handleInputChange}
-                        readOnly
                         className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
                         tooltip="Bu alan otomatik olarak doldurulacaktır."
                     />
