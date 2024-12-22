@@ -143,6 +143,7 @@ const BasvuruEkle = () => {
                     position: "top-right",
                     autoClose: 3000,
                 });
+                console.log("Başvuru oluşturuldu!");
                 navigate("/basarili");
             } catch (error) {
                 console.error("Hata:", error);  // Hata mesajı
