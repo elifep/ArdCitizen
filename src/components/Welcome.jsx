@@ -1,15 +1,16 @@
 import React from "react";
 import { FaExclamationCircle, FaFileAlt, FaPhoneAlt } from "react-icons/fa"; // Örnek ikonlar
 import { MdWarning } from "react-icons/md"; // Daha fazla ikon için farklı setler kullanılabilir
+import Hukuk from "../assets/Hukuk.jpg";
 
 const Welcome = ({ onProceed }) => {
     return (
         <div
             className="flex justify-center items-center h-screen bg-cover bg-center bg-opacity-90"
-            style={{ backgroundImage: "url('/src/images/justice-background.jpg')" }}
+            style={{ backgroundImage: `url(${Hukuk})` }}
         >
             {/* Şeffaf Arka Planlı Modal */}
-            <div className="bg-white bg-opacity-95 shadow-lg rounded-lg max-w-lg w-full p-8 text-center">
+            <div className="bg-white bg-opacity-85 shadow-lg rounded-lg max-w-lg w-full p-8 text-center">
                 {/* Başlık */}
                 <h1 className="text-3xl font-bold mb-4 text-[#800000] flex items-center justify-center">
                     <MdWarning className="text-[#800000] w-8 h-8 mr-2" />
