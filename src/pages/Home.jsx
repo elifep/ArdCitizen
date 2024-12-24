@@ -1,20 +1,15 @@
-// src/pages/Home.js
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import Loading from "../components/Loading";
+import Welcome from "../components/Welcome"; // Yeni Welcome componentini içe aktarıyoruz
 
-export const Home = () => {
+const Home = () => {
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const redirect = setTimeout(() => {
-            navigate("/basvuru-ekle-vatandas");
-        }, 1000); // 1 saniye bekleyip yönlendirme yapıyoruz
+    const handleProceed = () => {
+        navigate("/basvuru-ekle-vatandas");
+    };
 
-        return () => clearTimeout(redirect);
-    }, [navigate]);
-
-    return <Loading />;
+    return <Welcome onProceed={handleProceed} />;
 };
 
 export default Home;

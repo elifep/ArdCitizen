@@ -208,7 +208,7 @@ const BasvuruEkle = () => {
                                 Kaydet
                             </button>
                             <button
-                                onClick={() => navigate("/basvurular")}
+                                onClick={() => window.location.href = 'https://www.sanliurfabarosu.org.tr/'}
                                 className="bg-bordo text-white px-6 py-2 rounded-lg font-semibold hover:bg-dark-bordo"
                             >
                                 İptal
