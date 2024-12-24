@@ -128,21 +128,6 @@ const Case1 = ({ formData, setFormData, handleInputChange, errors }) => {
                         <p className="text-red-500 text-sm">{errors.telephone}</p>
                     )}
                 </div>
-
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">
-                        Başvuru Numarası<span className="text-red-500">*</span>:
-                    </label>
-                    <input
-                        type="number"
-                        name="requestNumber"
-                        placeholder="Bu alan otomatik olarak doldurulacaktır."
-                        value={formData.requestNumber}
-                        onChange={handleInputChange}
-                        className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        tooltip="Bu alan otomatik olarak doldurulacaktır."
-                    />
-                </div>
                 <div>
                     <label className="block text-sm font-medium text-gray-700">
                         Başvuran Türü<span className="text-red-500">*</span>:
@@ -176,10 +161,15 @@ const Case1 = ({ formData, setFormData, handleInputChange, errors }) => {
                     )}
                 </div>
 
-                <div className="mt-4 col-span-2">
+                <div className="mt-4 col-span-2 bg-gray-50 ">
+                    <div className="flex gap-64">
                     <label className="block text-sm font-medium text-gray-700">
                         Dosya Yükleme<span className="text-gray-500">(Opsiyonel)</span>:
                     </label>
+                    <label className="block text-sm font-medium text-gray-700">
+                        Dosya Açıklama:
+                    </label>
+                    </div>
                     {formData.submissions.map((submission, index) => (
                         <div key={index} className="flex items-center space-x-4 mt-2">
                             <input
@@ -187,6 +177,7 @@ const Case1 = ({ formData, setFormData, handleInputChange, errors }) => {
                                 onChange={(e) => handleFileChange(e, index)}
                                 className="border rounded-lg px-4 py-2 w-1/2"
                             />
+
                             <input
                                 type="text"
                                 placeholder="Açıklama"

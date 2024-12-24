@@ -1,5 +1,12 @@
 import React from "react";
 import categoryFields from "../categoryFields/categoryField";
+// Kategori isimlerini çevirme nesnesi
+const categoryTranslations = {
+  MediaScan: "Medya Taraması",
+  STK: "STK",
+  BaroCommissions: "Baro Komisyonları",
+  PublicInstitutions: "Kamu Kurumları",
+};
 
 const Case2 = ({ formData, setFormData, handleKategoriChange, handleIncidentInputChange, errors }) => {
   // Kategoriye özel alanlar
@@ -29,14 +36,14 @@ const Case2 = ({ formData, setFormData, handleKategoriChange, handleIncidentInpu
         >
           {Object.keys(categoryFields).map((cat) => (
             <option key={cat} value={cat}>
-              {cat}
+              {categoryTranslations[cat] || cat} {/* Türkçe kategori ismi */}
             </option>
           ))}
         </select>
         <div className="mt-3 p-3 border-l-4 border-yellow-400 bg-yellow-100 text-yellow-800 text-sm">
           {formData.Incidents.category === "MediaScan"
             ? "Seçili kategori: Medya Taraması. Bu kategori medya analizlerine yönelik işlemleri kapsar."
-            : `Seçili kategori: ${formData.Incidents.category}.`}
+            : `Seçili kategori: ${categoryTranslations[formData.Incidents.category] || formData.Incidents.category}.`}
         </div>
         {errors.category && (
           <p className="text-red-500 text-sm">{errors.category}</p>

@@ -19,7 +19,6 @@ const BasvuruEkle = () => {
         email: "",
         telephone: "",
         tckn: "",
-        requestNumber: "",
         applicantType: "",
         complaintReason: "",
         Incidents: {
@@ -129,7 +128,6 @@ const BasvuruEkle = () => {
                     email: formData.email,
                     tckn: formData.tckn,
                     telephone: formData.telephone,
-                    requestNumber: formData.requestNumber,
                     applicantType: formData.applicantType,
                     complaintReason: formData.complaintReason,
                     Incidents: formData.Incidents, // Eğer `_id` varsa sadece onu gönder
