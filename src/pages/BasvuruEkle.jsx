@@ -7,6 +7,8 @@ import Case1 from "../components/Process/Case1";
 import Case2 from "../components/Process/Case2";
 import categoryFields from "../components/categoryFields/categoryField";
 
+import Hukuk from "../assets/Hukuk.jpg";
+
 import { ToastContainer, toast } from "react-toastify"; // Toastify dahil edildi
 const BasvuruEkle = () => {
     const { createRequest, loading } = useRequestStore();
@@ -81,12 +83,6 @@ const BasvuruEkle = () => {
             return updatedData;
         });
     };
-    const categoryMapping = {
-        MedyaTaraması: "MediaScan",
-        STK: "STK",
-        BaroKomisyonları: "BaroCommissions",
-        KamuKurumları: "PublicInstitutions",
-    };
 
     const handleKategoriChange = (e) => {
         setFormData({
@@ -154,9 +150,17 @@ const BasvuruEkle = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <div
+            className="flex justify-center items-center p-3 bg-cover bg-center bg-opacity-90"
+            style={{
+                backgroundImage: `url(${Hukuk})`,
+                backgroundSize: "cover",
+                backgroundAttachment: "fixed",
+            }
+            }
+        >
             <ToastContainer /> {/* Toastify Konteyneri */}
-            <div className="bg-white rounded-lg shadow-lg p-8 max-w-4xl w-full">
+            <div className="w-full max-w-5xl bg-white bg-opacity-90 rounded-lg shadow-lg p-6">
                 <h1 className="text-3xl text-gray-800 font-extrabold text-center mb-6">Başvuru Ekle</h1>
 
                 <ProgressBar step={step} steps={steps} />

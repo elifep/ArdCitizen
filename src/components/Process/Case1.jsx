@@ -36,6 +36,21 @@ const Case1 = ({ formData, setFormData, handleInputChange, errors }) => {
             ],
         }));
     };
+    const removeFileInput = (index) => {
+        setFormData((prevData) => ({
+            ...prevData,
+            submissions: prevData.submissions.filter((_, i) => i !== index),
+        }));
+    };
+
+    const clearAllFiles = () => {
+        if (formData.submissions.length > 1) {
+            setFormData((prevData) => ({
+                ...prevData,
+                submissions: [prevData.submissions[0]], // İlk dosya kalır
+            }));
+        }
+    };
 
     return (
         <div>
@@ -160,44 +175,81 @@ const Case1 = ({ formData, setFormData, handleInputChange, errors }) => {
                         <p className="text-red-500 text-sm">{errors.complaintReason}</p>
                     )}
                 </div>
-
-                <div className="mt-4 col-span-2 bg-gray-50 ">
-                    <div className="flex gap-64">
-                    <label className="block text-sm font-medium text-gray-700">
-                        Dosya Yükleme<span className="text-gray-500">(Opsiyonel)</span>:
-                    </label>
-                    <label className="block text-sm font-medium text-gray-700">
-                        Dosya Açıklama:
-                    </label>
+                <div className="mt-4 col-span-2">
+                    {/* Etiketlerin hizalanması */}
+                    <div className="grid grid-cols-3 gap-4 items-center">
+                        <label className="text-sm font-medium text-gray-700 self-center">
+                            Dosya Yükleme <span className="text-gray-500">(Opsiyonel)</span>:
+                        </label>
+                        <label className="text-sm font-medium text-gray-700 self-center">
+                            Dosya Açıklama:
+                        </label>
+                        <span></span> {/* Boş sütun */}
                     </div>
+                    {/* Dosya ve açıklama girdileri */}
                     {formData.submissions.map((submission, index) => (
-                        <div key={index} className="flex items-center space-x-4 mt-2">
-                            <input
-                                type="file"
-                                onChange={(e) => handleFileChange(e, index)}
-                                className="border rounded-lg px-4 py-2 w-1/2"
-                            />
-
-                            <input
-                                type="text"
-                                placeholder="Açıklama"
-                                value={submission.documentDescription}
-                                onChange={(e) => handleDescriptionChange(e, index)}
-                                className="border rounded px-4 py-2 w-1/2"
-                            />
+                        <div
+                            key={index}
+                            className="grid grid-cols-3 gap-4 mt-2 p-3 bg-white border border-gray-300 rounded-lg shadow-sm items-start"
+                        >
+                            {/* Dosya seçme alanı */}
+                            <div className="flex flex-col w-full">
+                                <input
+                                    type="file"
+                                    onChange={(e) => handleFileChange(e, index)}
+                                    className="block w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 cursor-pointer focus:ring-blue-500 focus:border-blue-500"
+                                    aria-label={submission.document ? "Dosya seçildi" : "Henüz dosya seçilmedi"}
+                                />
+                                {!submission.document && (
+                                    <span className="text-gray-500 text-xs mt-1">Henüz dosya seçilmedi.</span>
+                                )}
+                            </div>
+                            {/* Dosya açıklama alanı */}
+                            <div className="flex flex-col w-full">
+                                <input
+                                    type="text"
+                                    placeholder="Açıklama giriniz"
+                                    value={submission.documentDescription}
+                                    onChange={(e) => handleDescriptionChange(e, index)}
+                                    className="block w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 p-2 focus:ring-blue-500 focus:border-blue-500"
+                                />
+                            </div>
+                            {/* Dosya kaldır butonu */}
+                            <div className="flex justify-end">
+                                {formData.submissions.length > 1 && (
+                                    <button
+                                        type="button"
+                                        onClick={() => removeFileInput(index)}
+                                        className="inline-flex items-center px-3 py-2 text-xs font-medium text-white bg-red-500 rounded-lg hover:bg-red-600 focus:ring-2 focus:ring-red-300"
+                                    >
+                                        Kaldır
+                                    </button>
+                                )}
+                            </div>
                         </div>
                     ))}
-                    <button
-                        type="button"
-                        onClick={addFileInput}
-                        className="mt-2 text-blue-500 hover:text-blue-700"
-                    >
-                        + Dosya Ekle
-                    </button>
-                    <div className="mt-3 p-3 border-l-4 border-yellow-400 bg-yellow-100 text-yellow-800 text-sm">
-                        {
-                            "Dosya seçin ve açıklama ekleyin. PDF, PNG ve JPEG dosyaları desteklenmektedir."
-                        }
+                    {/* Dosya ekle ve tümünü temizle butonları */}
+                    <div className="flex gap-4 mt-3">
+                        <button
+                            type="button"
+                            onClick={addFileInput}
+                            className="inline-flex items-center px-4 py-2 border border-blue-500 text-sm font-medium rounded-md text-blue-500 bg-white hover:bg-blue-100"
+                        >
+                            + Dosya Ekle
+                        </button>
+                        {formData.submissions.length > 1 && (
+                            <button
+                                type="button"
+                                onClick={clearAllFiles}
+                                className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-100"
+                            >
+                                Tümünü Temizle
+                            </button>
+                        )}
+                    </div>
+                    {/* Bilgilendirme metni */}
+                    <div className="mt-3 p-3 border-l-4 border-yellow-400 bg-yellow-100 text-yellow-800 text-sm rounded">
+                        Dosya seçin ve açıklama ekleyin. PDF, PNG ve JPEG dosyaları desteklenmektedir.
                     </div>
                 </div>
             </div>
